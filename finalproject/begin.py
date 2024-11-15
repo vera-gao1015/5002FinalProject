@@ -7,6 +7,8 @@ def begin():
     width, height = 1600, 900
     pygame.display.set_mode((width, height))
     screen = pygame.display.get_surface()
+    pygame.display.set_caption("Begin")
+    clock = pygame.time.Clock()
     begin = pygame.image.load("picture/begin.png")
     begin = pygame.transform.scale(begin, (width, height))
     screen.blit(begin, (0, 0))
@@ -31,6 +33,7 @@ def begin():
         screen.blit(button_text, (newgame_button.x + 50, newgame_button.y + 12))
 
         pygame.display.update()
+        clock.tick(40)
 
 if __name__ == "__main__":
     begin()

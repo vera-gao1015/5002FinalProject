@@ -1,4 +1,5 @@
 import pygame
+import game1
 
 def game(player):
     pygame.init()
@@ -6,12 +7,12 @@ def game(player):
     width, height = 1600, 900
     pygame.display.set_mode((width, height))
     screen = pygame.display.get_surface()
+    pygame.display.set_caption("New Game")
     clock = pygame.time.Clock()
 
     bgpic = pygame.image.load("picture/map.jpg")
     original_width, original_height = bgpic.get_width(), bgpic.get_height()
     bgpic = pygame.transform.scale(bgpic, (width, height))
-
     
     scale_width = width / original_width
     scale_height = height / original_height
@@ -21,7 +22,7 @@ def game(player):
     hero = pygame.sprite.Sprite()
     hero.image = hero_image
     hero.rect = hero.image.get_rect()
-    hero.rect.x, hero.rect.y = (187+189+113+10)*scale_width,0
+    hero.rect.x, hero.rect.y = 20*scale_width,480*scale_height
 
     player_group = pygame.sprite.Group()
     player_group.add(hero)
@@ -72,6 +73,8 @@ def game(player):
             hero.rect.x -= 10
         if keys[pygame.K_RIGHT] and hero.rect.x + hero.rect.width < width and checkobstacle(10, 0):
             hero.rect.x += 10
+        if hero.rect.x < 10*scale_width and 460*scale_height < hero.rect.y < 539*scale_height:
+            game1.game1(player)
 
         screen.blit(bgpic, (0, 0))
         player_group.draw(screen)

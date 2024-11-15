@@ -7,6 +7,7 @@ def chooseplayer():
     width, height = 1600, 900
     pygame.display.set_mode((width, height))
     screen = pygame.display.get_surface()
+    clock = pygame.time.Clock()
     pygame.display.set_caption("Choose Your Player")
     choose = pygame.image.load("picture/choose.png")
     choose = pygame.transform.scale(choose, (width, height))
@@ -86,7 +87,7 @@ def chooseplayer():
                     running = False
 
         pygame.display.update()
-
+        clock.tick(40)
     game.game(player)
 
 if __name__ == "__main__":
