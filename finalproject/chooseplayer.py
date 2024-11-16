@@ -1,5 +1,6 @@
 import pygame
 import game
+import globalv
 
 def chooseplayer():
     pygame.init()
@@ -12,17 +13,15 @@ def chooseplayer():
     choose = pygame.image.load("picture/choose.png")
     choose = pygame.transform.scale(choose, (width, height))
 
-    player1_image = pygame.image.load("picture/hero.png")
+    player1_image = pygame.image.load("picture/hero0.png")
     player2_image = pygame.image.load("picture/hero1.png")
     player3_image = pygame.image.load("picture/hero2.png")
     player4_image = pygame.image.load("picture/hero3.png")
     player5_image = pygame.image.load("picture/hero4.png")
 
-    player1_image = pygame.transform.scale(player1_image, (200, 200))
-    player2_image = pygame.transform.scale(player2_image, (200, 200))
-    player3_image = pygame.transform.scale(player3_image, (200, 200))
-    player4_image = pygame.transform.scale(player4_image, (200, 200))
-    player5_image = pygame.transform.scale(player5_image, (200, 200))
+    player_image = [player1_image, player2_image, player3_image, player4_image, player5_image]
+    for i in player_image:
+        i = pygame.transform.scale(i, (200, 200))
     
     # 定义角色选择框的矩形
     player1_rect = pygame.Rect(250, 250, 200, 200)  # 玩家 1 的位置
@@ -31,18 +30,20 @@ def chooseplayer():
     player4_rect = pygame.Rect(400, 550, 200, 200)  # 玩家 4 的位置
     player5_rect = pygame.Rect(700, 550, 200, 200)  # 玩家 5 的位置
 
+    player_rect = [player1_rect, player2_rect, player3_rect, player4_rect, player5_rect]
+    
+    font = pygame.font.SysFont("Arial", 80)
+    text = font.render("Choose Your Player", True, (255, 255, 255))
+    font1 = pygame.font.SysFont("Arial", 50)
+    text1 = font1.render("Siyu", True, (255, 255, 255))
+    text2 = font1.render("Vera", True, (255, 255, 255))
+    text3 = font1.render("Gloria", True, (255, 255, 255))
+    text4 = font1.render("Crystal", True, (255, 255, 255))
+    text5 = font1.render("Vivi", True, (255, 255, 255))
+    
     running = True
-
     while running:
-        screen.blit(choose,(0,0))
-        font = pygame.font.SysFont("Arial", 80)
-        text = font.render("Choose Your Player", True, (255, 255, 255))
-        font1 = pygame.font.SysFont("Arial", 50)
-        text1 = font1.render("Siyu", True, (255, 255, 255))
-        text2 = font1.render("Vera", True, (255, 255, 255))
-        text3 = font1.render("Gloria", True, (255, 255, 255))
-        text4 = font1.render("Crystal", True, (255, 255, 255))
-        text5 = font1.render("Vivi", True, (255, 255, 255))
+        screen.blit(choose,(0, 0))
         screen.blit(text, (150, 100))  # 显示标题
         screen.blit(text1, (300, 450))  # 显示标题
         screen.blit(text2, (610, 450))  # 显示标题
@@ -51,44 +52,37 @@ def chooseplayer():
         screen.blit(text5, (770, 750))  # 显示标题
 
         # 绘制角色图片
-        screen.blit(player1_image, player1_rect)
-        screen.blit(player2_image, player2_rect)
-        screen.blit(player3_image, player3_rect)
-        screen.blit(player4_image, player4_rect)
-        screen.blit(player5_image, player5_rect)
+        for i in range(len(player_image)):
+            screen.blit(player_image[i], player_rect[i])
 
         # 绘制边框
-        pygame.draw.rect(screen, (255, 255, 255), player1_rect, 5)
-        pygame.draw.rect(screen, (255, 255, 255), player2_rect, 5)
-        pygame.draw.rect(screen, (255, 255, 255), player3_rect, 5)
-        pygame.draw.rect(screen, (255, 255, 255), player4_rect, 5)
-        pygame.draw.rect(screen, (255, 255, 255), player5_rect, 5)
+        for i in player_rect:
+            pygame.draw.rect(screen, (255, 255, 255), i, 5)
 
         # 事件处理
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 exit()
+            
+            for i in range(len(player_rect)):
+                if player_rect[i].collidepoint(pygame.mouse.get_pos()):
+                    player_image[i] = pygame.transform.scale(player_image[i], (205, 205))
+                else:
+                    player_image[i] = pygame.transform.scale(player_image[i], (200, 200))
+            
             if event.type == pygame.MOUSEBUTTONDOWN:
-                if player1_rect.collidepoint(event.pos):  # 判断是否点击玩家 1
-                    player = "hero"
-                    running = False  # 退出选择界面
-                if player2_rect.collidepoint(event.pos):  # 判断是否点击玩家 2
-                    player = "hero1"
-                    running = False
-                if player3_rect.collidepoint(event.pos):  # 判断是否点击玩家 3
-                    player = "hero2"
-                    running = False
-                if player4_rect.collidepoint(event.pos):  # 判断是否点击玩家 2
-                    player = "hero3"
-                    running = False
-                if player5_rect.collidepoint(event.pos):  # 判断是否点击玩家 2
-                    player = "hero4"
-                    running = False
+                for i in range(len(player_rect)):
+                    if player_rect[i].collidepoint(event.pos):
+                        player = "hero" + str(i)
+                        running = False
+                        break
 
         pygame.display.update()
         clock.tick(40)
-    game.game(player)
+    globalv.flag_dog = True
+    globalv.flag_cat = True
+    game.game(player, 42, 672, globalv.flag_dog, globalv.flag_cat)
 
 if __name__ == "__main__":
     chooseplayer()

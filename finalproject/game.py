@@ -1,9 +1,11 @@
 import pygame
+import chooseplayer
 import game1
+import dialogue
 
-def game(player):
+def game(player, x, y, flag_dog, flag_cat):
     pygame.init()
-
+    print("1: ", flag_dog, flag_cat)
     width, height = 1600, 900
     pygame.display.set_mode((width, height))
     screen = pygame.display.get_surface()
@@ -13,17 +15,40 @@ def game(player):
     bgpic = pygame.image.load("picture/map.jpg")
     original_width, original_height = bgpic.get_width(), bgpic.get_height()
     bgpic = pygame.transform.scale(bgpic, (width, height))
-    
     scale_width = width / original_width
     scale_height = height / original_height
+    # print(scale_width, scale_height)
+    dog = pygame.image.load("picture/dog.ico")
+    dog = pygame.transform.scale(dog, (30*scale_width, 30*scale_height))
+    dog_rect = dog.get_rect()
+    dog_rect.x, dog_rect.y = 270*scale_width, 205*scale_height
+
+    cat = pygame.image.load("picture/cat.png")
+    cat = pygame.transform.scale(cat, (40*scale_width, 40*scale_height))
+    cat_rect = cat.get_rect()
+    cat_rect.x, cat_rect.y = 600*scale_width, 430*scale_height
+
+    npc = [{"name": "dog", "image": dog, "rect": dog_rect},
+           {"name": "cat", "image": cat, "rect": cat_rect},
+            ]
 
     address = "picture/" + player + ".png" 
     hero_image = pygame.transform.scale(pygame.image.load(address), (55, 55))
     hero = pygame.sprite.Sprite()
     hero.image = hero_image
     hero.rect = hero.image.get_rect()
-    hero.rect.x, hero.rect.y = 20*scale_width,480*scale_height
+    hero.rect.x, hero.rect.y = x, y
 
+    def checknpc(x, y):
+        new = hero.rect.move(x, y)
+        for i in npc:
+            if new.colliderect(i["rect"]):
+                if i["name"] == "dog":
+                    return "dog"
+                if i["name"] == "cat":
+                    return "cat"
+        return False
+    
     player_group = pygame.sprite.Group()
     player_group.add(hero)
 
@@ -59,6 +84,14 @@ def game(player):
         return True
             
     while True:
+        screen.blit(bgpic, (0, 0))
+        player_group.draw(screen)
+
+        if flag_dog:
+            screen.blit(npc[0]["image"], npc[0]["rect"])
+        if flag_cat:
+            screen.blit(npc[1]["image"], npc[1]["rect"])
+
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
@@ -75,12 +108,16 @@ def game(player):
             hero.rect.x += 10
         if hero.rect.x < 10*scale_width and 460*scale_height < hero.rect.y < 539*scale_height:
             game1.game1(player)
-
-        screen.blit(bgpic, (0, 0))
-        player_group.draw(screen)
-
+        if (checknpc(0, 10)=="dog") or (checknpc(0, -10)=="dog") or (checknpc(10, 0)=="dog") or (checknpc(-10, 0)=="dog"):  
+            dialogue.dialogue(player, hero.rect.x, hero.rect.y, "dog")
+        if (checknpc(0, 10)=="cat") or (checknpc(0, -10)=="cat") or (checknpc(10, 0)=="cat") or (checknpc(-10, 0)=="cat"):
+            dialogue.dialogue(player, hero.rect.x, hero.rect.y, "cat")
+        
+        if keys[pygame.K_ESCAPE]:
+            chooseplayer.chooseplayer()
+            
         pygame.display.update()
         clock.tick(40)
 
 if __name__ == "__main__":
-    game("hero")
+    game("hero0",42, 672, True, True)

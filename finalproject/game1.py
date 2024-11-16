@@ -1,5 +1,6 @@
 import pygame
 import game
+import globalv
 
 def game1(player):
     pygame.init()
@@ -13,7 +14,6 @@ def game1(player):
     bgpic = pygame.image.load("picture/map1.jpg")
     original_width, original_height = bgpic.get_width(), bgpic.get_height()
     bgpic = pygame.transform.scale(bgpic, (width, height))
-    
     scale_width = width / original_width
     scale_height = height / original_height
 
@@ -41,6 +41,9 @@ def game1(player):
  
             
     while True:
+        screen.blit(bgpic, (0, 0))
+        player_group.draw(screen)
+
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
@@ -56,12 +59,10 @@ def game1(player):
         if keys[pygame.K_RIGHT] and hero.rect.x + hero.rect.width < width and checkobstacle(10, 0):
             hero.rect.x += 10
         if hero.rect.x > 720*scale_width and 460*scale_height < hero.rect.y < 539*scale_height:
-            game.game(player)
-        screen.blit(bgpic, (0, 0))
-        player_group.draw(screen)
+            game.game(player, 42, 672, globalv.flag_dog, globalv.flag_cat)
 
         pygame.display.update()
         clock.tick(40)
 
 if __name__ == "__main__":
-    game1("hero")
+    game1("hero0")
