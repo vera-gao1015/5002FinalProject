@@ -39,14 +39,15 @@ def show_end_screen(screen, width, height, message, font):
                 elif quit_button.collidepoint(event.pos):
                     return "quit"
 
-
 def battle(player="hero"):
-    pygame.init()  # Initialize all Pygame modules, including fonts
-
+    pygame.init()  # Initialize all Pygame modules
+    
     # File paths for images
-    path_bg = "picture/map.jpg"
+    path_bg = "picture/battle_bg.jpg"  # 改为 .jpg
     path_player_img = f"picture/{player}.png"
-    path_monster_img = "picture/hero2.png"
+    path_monster_img = "picture/Boss.png"
+    path_player_bullet_img = "picture/bullet.png"
+    path_monster_bullet_img = "picture/bullet.png"
 
     # Screen dimensions and initialization
     width, height = 1600, 900
@@ -60,6 +61,10 @@ def battle(player="hero"):
     # Load player and monster images
     player_image = pygame.transform.scale(pygame.image.load(path_player_img), (150, 150))
     monster_image = pygame.transform.scale(pygame.image.load(path_monster_img), (150, 150))
+
+    # Load bullet images
+    player_bullet_image = pygame.transform.scale(pygame.image.load(path_player_bullet_img), (50, 30))
+    monster_bullet_image = pygame.transform.scale(pygame.image.load(path_monster_bullet_img), (50, 30))
 
     # Player and monster positions
     player_rect = player_image.get_rect()
@@ -106,7 +111,8 @@ def battle(player="hero"):
 
         # Player controls
         if keys[pygame.K_SPACE] and can_shoot:  # Shoot only if can_shoot is True
-            player_bullets.append(pygame.Rect(player_rect.centerx, player_rect.y, 10, 10))
+            bullet_y = player_rect.y + player_rect.height // 2  # Middle of player
+            player_bullets.append(pygame.Rect(player_rect.centerx, bullet_y, 20, 20))  # Add rect for collision
             can_shoot = False  # Reset can_shoot until SPACE is released
 
         if keys[pygame.K_UP] and not player_jump:  # Jump
@@ -125,7 +131,8 @@ def battle(player="hero"):
 
         # Monster random shooting
         if random.randint(1, 50) == 1:  # Random chance to shoot
-            monster_bullets.append(pygame.Rect(monster_rect.centerx, monster_rect.y, 10, 10))
+            bullet_y = monster_rect.y + monster_rect.height // 2  # Middle of monster
+            monster_bullets.append(pygame.Rect(monster_rect.centerx, bullet_y, 20, 20))  # Add rect for collision
 
         # Monster Jumping to Avoid Bullets
         if any(bullet.colliderect(monster_rect) for bullet in player_bullets) and random.random() < monster_jump_chance:
@@ -146,7 +153,7 @@ def battle(player="hero"):
             bullet.x += 15
             if bullet.colliderect(monster_rect):  # Hit monster
                 player_bullets.remove(bullet)
-                monster_health -= 10
+                monster_health -= 5
             elif bullet.x > width:  # Out of bounds
                 player_bullets.remove(bullet)
 
@@ -154,30 +161,34 @@ def battle(player="hero"):
             bullet.x -= 15
             if bullet.colliderect(player_rect):  # Hit player
                 monster_bullets.remove(bullet)
-                player_health -= 10
+                player_health -= 5
             elif bullet.x < 0:  # Out of bounds
                 monster_bullets.remove(bullet)
 
-        # Draw bullets
+        # Draw bullets using images
         for bullet in player_bullets:
-            pygame.draw.rect(screen, (255, 255, 0), bullet)  # Yellow bullets for player
+            screen.blit(player_bullet_image, (bullet.x, bullet.y))
 
         for bullet in monster_bullets:
-            pygame.draw.rect(screen, (255, 0, 0), bullet)  # Red bullets for monster
+            screen.blit(monster_bullet_image, (bullet.x, bullet.y))
 
         # Draw player and monster
         screen.blit(player_image, player_rect)
         screen.blit(monster_image, monster_rect)
 
-        # Draw health bars
-        pygame.draw.rect(screen, (0, 255, 0), pygame.Rect(50, 50, player_health * 2, 20))
-        pygame.draw.rect(screen, (255, 0, 0), pygame.Rect(width - 250, 50, monster_health * 2, 20))
+        # Draw health bars above characters
+        player_health_bar = pygame.Rect(player_rect.x, player_rect.y - 20, player_health * 1.5, 10)
+        monster_health_bar = pygame.Rect(monster_rect.x, monster_rect.y - 20, monster_health * 1.5, 10)
 
-        # Display health text
-        player_health_text = font.render(f"Player HP: {player_health}", True, (255, 255, 255))
-        monster_health_text = font.render(f"Monster HP: {monster_health}", True, (255, 255, 255))
-        screen.blit(player_health_text, (50, 10))
-        screen.blit(monster_health_text, (width - 250, 10))
+        pygame.draw.rect(screen, (0, 255, 0), player_health_bar)  # Green health bar for player
+        pygame.draw.rect(screen, (255, 0, 0), monster_health_bar)  # Red health bar for monster
+
+        # Display health numbers above health bars
+        player_health_text = font.render(f"{player_health}", True, (255, 255, 255))
+        monster_health_text = font.render(f"{monster_health}", True, (255, 255, 255))
+
+        screen.blit(player_health_text, (player_rect.x, player_rect.y - 50))  # Above player
+        screen.blit(monster_health_text, (monster_rect.x, monster_rect.y - 50))  # Above monster
 
         # Check for win/loss
         if player_health <= 0:
