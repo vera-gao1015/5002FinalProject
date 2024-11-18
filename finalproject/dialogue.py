@@ -1,6 +1,8 @@
 import pygame
 import game
+import game1
 import globalv
+import petroom
 
 def dialogue(player, x, y, npcname):
     pygame.init()
@@ -66,7 +68,9 @@ def dialogue(player, x, y, npcname):
         ["Monsters? Perfect, I've been looking for a challenge. ", "Let me help you!"],
         ["Thank you so much! Take me with you! ", "I know this area really well, and I have some surprising abilities!"],
         ["OK! Let's go!"],
-        ["Wait, let’s check out the village chief’s house first!"]
+        ["Wait, let’s check out the village chief’s house first!"],
+        ["Sure!"],
+        ["You got yogurt!"]
     ]
     dialogues_cat = [
         ["Hi "+ player_name[int(player[-1])] +",", "I'm the little cat from Brave Village. You're the first warrior to come here, ", "and I've been waiting for you for so long! ", "Our village chief has gone missing. Can you help me find him?"],
@@ -75,9 +79,14 @@ def dialogue(player, x, y, npcname):
         ["Monsters? Perfect, I've been looking for a challenge. ", "Let me help you!"],
         ["Thank you so much! Take me with you! ", "I know this area really well, and I have some surprising abilities!"],
         ["OK! Let's go!"],
-        ["Wait, let’s check out the village chief’s house first!"]
+        ["Wait, let’s check out the village chief’s house first!"],
+        ["Sure!"],
+        ["You got maomao!"]
     ]
-    text4 = font1.render("You're not the one I'm looking for……", True, (255, 255, 255))
+    text1 = font1.render("You're not the one I'm looking for……", True, (255, 255, 255))
+    text2 = font1.render("Click there to the pet room……", True, (255, 255, 255))
+    text2_rect = text2.get_rect()
+    text2_rect.topleft = (1000, 540)
  
 
     while True:
@@ -97,37 +106,45 @@ def dialogue(player, x, y, npcname):
                 screen.blit(dialogue_blank, dialogue_blank_rect)
                 newhero = pygame.transform.scale(hero.image, (150, 150))
                 screen.blit(newhero, (150, 420))
-        
+
             dialogue_now = dialogues_dog[dialogue_index]  # 获取当前对话
             for i in range(len(dialogue_now)):  # 遍历当前对话的每一行
                 text = font1.render(dialogue_now[i], True, (255, 255, 255))  # 将每一行渲染为文本
-              
+                if dialogue_index == len(dialogues_dog) - 1 and i == len(dialogue_now) - 1:
+                    screen.blit(text2, text2_rect)
                 if player[-1] == "0" or player[-1] == "3" or player[-1] == "4":
                     screen.blit(text, (320, 425 + i * 40))
                     flag = True
                 else:
                     flag =False
                     screen.blit(dialogue_dog, dialogue_dog_rect)
-                    screen.blit(text4, (320, 490))
+                    screen.blit(text1, (320, 490))
                     break
-            
+
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     pygame.quit()
                     exit()
-                
-                keys = pygame.key.get_pressed()
+
+                if event.type == pygame.MOUSEBUTTONDOWN:
+                    if text2_rect.collidepoint(event.pos):
+                        globalv.flag_dog = False
+                        globalv.get_dog = True
+                        petroom.petroom("game", x-10, y-10, player)
+
+                keys = pygame.key.get_pressed()   
                 if keys[pygame.K_RETURN]:
                     if not flag:
                         globalv.flag_dog = False
                         print(globalv.flag_dog, globalv.flag_cat)
-                        game.game(player, x-10, y-10, globalv.flag_dog, globalv.flag_cat)
+                        game.game(player, x-10, y-10)
                     else:
                         dialogue_index += 1
+                        globalv.get_dog = True
                         if dialogue_index >= len(dialogues_dog): 
                             globalv.flag_dog = False 
                             print(globalv.flag_dog, globalv.flag_cat)
-                            game.game(player, x-10, y-10, globalv.flag_dog, globalv.flag_cat)
+                            game.game(player, x-10, y-10)
         
         elif npcname == "cat":
             flag = True
@@ -141,14 +158,15 @@ def dialogue(player, x, y, npcname):
             dialogue_now = dialogues_cat[dialogue_index]  # 获取当前对话
             for i in range(len(dialogue_now)):  # 遍历当前对话的每一行
                 text = font1.render(dialogue_now[i], True, (255, 255, 255))  # 将每一行渲染为文本
-              
+                if dialogue_index == len(dialogues_cat) - 1 and i == len(dialogue_now) - 1:
+                    screen.blit(text2, text2_rect)
                 if player[-1] == "1" or player[-1] == "2":
                     screen.blit(text, (320, 425 + i * 40))
                     flag = True
                 else:
                     flag =False
                     screen.blit(dialogue_cat, dialogue_cat_rect)
-                    screen.blit(text4, (320, 490))
+                    screen.blit(text1, (320, 490))
                     break
 
             
@@ -156,24 +174,31 @@ def dialogue(player, x, y, npcname):
                 if event.type == pygame.QUIT:
                     pygame.quit()
                     exit()
-                
+
+                if event.type == pygame.MOUSEBUTTONDOWN:
+                    if text2_rect.collidepoint(event.pos):
+                        globalv.flag_cat = False
+                        globalv.get_cat = True
+                        petroom.petroom("game", x-10, y-10, player)
+
                 keys = pygame.key.get_pressed()
                 if keys[pygame.K_RETURN]:
                     if not flag:
                         globalv.flag_cat = False
                         print(globalv.flag_dog, globalv.flag_cat)
-                        game.game(player, x-10, y,globalv.flag_dog, globalv.flag_cat)
+                        game.game(player, x-10, y-10)
                         
                     else:
                         dialogue_index += 1
+                        globalv.get_cat = True
                         if dialogue_index >= len(dialogues_cat):
                             globalv.flag_cat = False 
                             print(globalv.flag_dog, globalv.flag_cat) 
-                            game.game(player, x-10, y-10,globalv.flag_dog, globalv.flag_cat)
+                            game.game(player, x-10, y-10)
                             
         
         pygame.display.update()
-        clock.tick(40)
+        clock.tick(60)
 
 if __name__ == "__main__":
     dialogue("hero0",550,220,"dog")

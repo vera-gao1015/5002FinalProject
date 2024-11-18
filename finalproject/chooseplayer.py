@@ -20,8 +20,8 @@ def chooseplayer():
     player5_image = pygame.image.load("picture/hero4.png")
 
     player_image = [player1_image, player2_image, player3_image, player4_image, player5_image]
-    for i in player_image:
-        i = pygame.transform.scale(i, (200, 200))
+    # for i in player_image:
+    #     i = pygame.transform.scale(i, (200, 200))
     
     # 定义角色选择框的矩形
     player1_rect = pygame.Rect(250, 250, 200, 200)  # 玩家 1 的位置
@@ -41,8 +41,10 @@ def chooseplayer():
     text4 = font1.render("Crystal", True, (255, 255, 255))
     text5 = font1.render("Vivi", True, (255, 255, 255))
     
-    running = True
-    while running:
+    globalv.flag_dog = True
+    globalv.flag_cat = True
+
+    while True:
         screen.blit(choose,(0, 0))
         screen.blit(text, (150, 100))  # 显示标题
         screen.blit(text1, (300, 450))  # 显示标题
@@ -75,14 +77,11 @@ def chooseplayer():
                 for i in range(len(player_rect)):
                     if player_rect[i].collidepoint(event.pos):
                         player = "hero" + str(i)
-                        running = False
-                        break
+                        game.game(player, 42, 672)
 
         pygame.display.update()
-        clock.tick(40)
-    globalv.flag_dog = True
-    globalv.flag_cat = True
-    game.game(player, 42, 672, globalv.flag_dog, globalv.flag_cat)
+        clock.tick(60)
+
 
 if __name__ == "__main__":
     chooseplayer()
