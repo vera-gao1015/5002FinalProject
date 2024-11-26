@@ -39,7 +39,7 @@ def show_end_screen(screen, width, height, message, font):
                 elif quit_button.collidepoint(event.pos):
                     return "quit"
 
-def battle(player="hero"):
+def battle(player="hero0"):
     pygame.init()  # Initialize all Pygame modules
     
     # File paths for images
