@@ -1,6 +1,6 @@
 import pygame
 import chooseplayer
-import game1
+import game1_with_blocked_area as game1
 import dialogue
 import petroom
 import chiefroom
