@@ -4,12 +4,23 @@ import game
 import chooseplayer
 import petroom
 from tools.draw_blocked_area import check_blocked, load_blocked_areas, draw_blocked_areas
+from box import Box  # Import the Box class
 
-
-
+list_coordinates_box = [
+    (285, 495),
+    (1460,380),
+    (1220,800),
+    (445, 800),
+    (390, 90) 
+    
+]
 
 def game1(player, x, y):
     path_blocked_areas = 'tools/blocked_areas_map1.json'
+    path_bg = "picture/map1.jpg"
+    path_hero = f"picture/{player}.png"
+    path_box_closed = "picture/box_close.png"
+    path_box_open = "picture/box_open.png"
     pygame.init()
 
     width, height = 1600, 900
@@ -19,40 +30,56 @@ def game1(player, x, y):
     clock = pygame.time.Clock()
 
     # Load background and player image
-    bgpic = pygame.image.load("picture/map1.jpg")
+    bgpic = pygame.image.load(path_bg)
     bgpic = pygame.transform.scale(bgpic, (width, height))
-    address = f"picture/{player}.png"
-    hero_image = pygame.transform.scale(pygame.image.load(address), (55, 55))
+    
+    # Create a box on the map
+    list_boxes = [Box(coords[0], coords[1], path_box_closed, path_box_open) for coords in list_coordinates_box]
+    
+    # Create the hero on the map
+    hero_image = pygame.transform.scale(pygame.image.load(path_hero), (55, 55))
     hero = pygame.sprite.Sprite()
     hero.image = hero_image
     hero.rect = hero.image.get_rect()
     hero.rect.x, hero.rect.y = x, y
+
     # Font for displaying coordinates
     font = pygame.font.SysFont("Arial", 24, bold=True)
+
+
+
     # Load blocked areas
     blocked_areas = load_blocked_areas(path_blocked_areas)
 
     player_group = pygame.sprite.Group()
     player_group.add(hero)
 
-
     while True:
         screen.blit(bgpic, (0, 0))  # Draw background
+       
+        # Draw all boxes
+        for box in list_boxes:
+            box.draw(screen)  
         player_group.draw(screen)  # Draw player
-        # draw_blocked_areas(screen, blocked_areas)  # Debug: Draw blocked areas
-        
-        # Display player coordinates for debugging 
-        # grid_x, grid_y = hero.rect.x, hero.rect.y
-        # coordinates_text = f"({grid_x}, {grid_y})"
-        # text_surface = font.render(coordinates_text, True, (255, 255, 255))  # White text
-        # text_x = hero.rect.x + (hero.rect.width - text_surface.get_width()) // 2
-        # text_y = hero.rect.y - text_surface.get_height() - 5  # Position above the player
-        # screen.blit(text_surface, (text_x, text_y))
-        
+
+        # Display player coordinates
+        grid_x, grid_y = hero.rect.x, hero.rect.y
+        coordinates_text = f"({grid_x}, {grid_y})"
+        text_surface = font.render(coordinates_text, True, (255, 255, 255))  # White text
+        text_x = hero.rect.x + (hero.rect.width - text_surface.get_width()) // 2
+        text_y = hero.rect.y - text_surface.get_height() - 5  # Position above the player
+        screen.blit(text_surface, (text_x, text_y))
+
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 exit()
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_SPACE:                  # Interact with the box
+                    for box in list_boxes:
+                         
+                        if hero.rect.colliderect(box.rect):              # Player near the box
+                            box.toggle()
 
         keys = pygame.key.get_pressed()
 
@@ -71,7 +98,6 @@ def game1(player, x, y):
         if hero.rect.x > 1520 and 660 < hero.rect.y < 705:
             print(hero.rect.x, hero.rect.y)
             game.game(player, 42, 672)
-            # pass
 
         # Other game features
         if keys[pygame.K_ESCAPE]:
