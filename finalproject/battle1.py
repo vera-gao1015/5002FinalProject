@@ -152,7 +152,7 @@ def battle(player, x, y):
             elif bullet.x < 0:  # Out of bounds
                 boss_bullet.remove(bullet)
         
-        if player_health < 90:
+        if player_health <= 0:
             screen.fill((0, 0, 0))
             lose = pygame.image.load("picture/lose.jpg")
             lose = pygame.transform.scale(lose, (1000, 500))
@@ -169,7 +169,7 @@ def battle(player, x, y):
             pygame.draw.rect(screen, (255, 255, 255), return_button)
             screen.blit(text5, (return_button.x + 75, return_button.y + 12))
         
-        if boss_health <= 90:
+        if boss_health <= 0:
             screen.fill((0, 0, 0))
             win = pygame.image.load("picture/win.jpg")
             win = pygame.transform.scale(win, (1000, 500))
@@ -180,8 +180,6 @@ def battle(player, x, y):
             pygame.draw.rect(screen, (0, 0, 0), return_button.inflate(8, 8))
             pygame.draw.rect(screen, (255, 255, 255), return_button)
             screen.blit(text5, (return_button.x + 80, return_button.y + 12))
-
-
         
         pygame.display.update()
         clock.tick(60)

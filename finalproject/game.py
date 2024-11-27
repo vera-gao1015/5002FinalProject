@@ -1,28 +1,13 @@
 import pygame
-from box import Box
 import chooseplayer
-import game1_with_blocked_area as game1
+import game1
 import dialogue
 import petroom
 import chiefroom
 import globalv
-
-
-list_coordinates_box = [
-    (827, 340),
-    (1460, 190),
-    (1302,830),
-    (430, 780),
-    (400, 160) 
-    
-]
-
-
+from box import Box
 
 def game(player, x, y):
-    path_box_closed = "picture/box_close.png"
-    path_box_open = "picture/box_open.png"
-    
     pygame.init()
 
     width, height = 1600, 900
@@ -47,16 +32,10 @@ def game(player, x, y):
     cat_rect = cat.get_rect()
     cat_rect.x, cat_rect.y = 600*scale_width, 430*scale_height
 
-    # Create a box on the map
-    list_boxes = [Box(coords[0], coords[1], path_box_closed, path_box_open) for coords in list_coordinates_box]
-    
-    
-    
     npc = [{"name": "dog", "image": dog, "rect": dog_rect},
            {"name": "cat", "image": cat, "rect": cat_rect},
            {"name": "chiefroom", "image": None, "rect": (206*scale_width, 213*scale_height, 60*scale_width, 45*scale_height)},
             ]
-
 
     address = "picture/" + player + ".png" 
     hero_image = pygame.transform.scale(pygame.image.load(address), (55, 55))
@@ -64,13 +43,6 @@ def game(player, x, y):
     hero.image = hero_image
     hero.rect = hero.image.get_rect()
     hero.rect.x, hero.rect.y = x, y
-    
-    # Font for displaying coordinates
-    font = pygame.font.SysFont("Arial", 24, bold=True)
-
-
-
-
     player_group = pygame.sprite.Group()
     player_group.add(hero)
 
@@ -110,6 +82,13 @@ def game(player, x, y):
                      pygame.Rect((187+136+42+42+10)*scale_width, (73+67+81+20)*scale_height, 40*scale_width, 52*scale_height),
                      pygame.Rect((187+51+10)*scale_width, (73+67+81+10)*scale_height, 85*scale_width, 60*scale_height),
                      pygame.Rect((187+93+10)*scale_width, (73+67+10)*scale_height, 143*scale_width, 81*scale_height),
+                     pygame.Rect(35, 520, 70, 70),
+                     pygame.Rect(1285,100, 70, 70),
+                     pygame.Rect(1450,760, 70, 70),
+                     pygame.Rect(790, 500, 70, 70),
+                     pygame.Rect(360, 200, 70, 70),
+                     pygame.Rect(1500, 370, 70, 70),
+                     pygame.Rect(850, 180, 70, 70),
                     ]
         for i in obstacles:
             # pygame.draw.rect(screen, (255, 255, 255), i, 5)
@@ -117,22 +96,25 @@ def game(player, x, y):
             if new.colliderect(i):
                 return False
         return True
+
+    list_coordinates_box = [(35, 520),(1285,100),(1450,760),(790, 500),(360, 200),(1500, 370),(850, 180)]
+    
+    boxes = []
+    for box in list_coordinates_box:
+        box = Box(box[0], box[1])
+        boxes.append(box)
+    
+    def checkbox():
+        for box in boxes:
+            if hero.rect.inflate(10, 10).colliderect(box.rect):
+                return box
+        return None
             
-    while True: 
+    while True:
         screen.blit(bgpic, (0, 0))
-        # Draw all boxes
-        for box in list_boxes:
-            box.draw(screen)  
         player_group.draw(screen)
-        
-        
-        # Display player coordinates
-        grid_x, grid_y = hero.rect.x, hero.rect.y
-        coordinates_text = f"({grid_x}, {grid_y})"
-        text_surface = font.render(coordinates_text, True, (255, 255, 255))  # White text
-        text_x = hero.rect.x + (hero.rect.width - text_surface.get_width()) // 2
-        text_y = hero.rect.y - text_surface.get_height() - 5  # Position above the player
-        screen.blit(text_surface, (text_x, text_y))
+        for box in boxes:
+            box.draw(screen) 
         
         if globalv.flag_dog:
             screen.blit(npc[0]["image"], npc[0]["rect"])
@@ -145,9 +127,9 @@ def game(player, x, y):
                 exit()
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_SPACE:                  # Interact with the box
-                    for box in list_boxes:
-                        if hero.rect.colliderect(box.rect):              # Player near the box
-                            box.toggle()
+                    return_box = checkbox()
+                    if return_box:              # Player near the box
+                        return_box.toggle()
 
         keys = pygame.key.get_pressed()
         if keys[pygame.K_DOWN] and hero.rect.y + hero.rect.height < height and checkobstacle(0, 5):
@@ -160,7 +142,6 @@ def game(player, x, y):
             hero.rect.x += 5
         if hero.rect.x < 10*scale_width and 460*scale_height < hero.rect.y < 539*scale_height:
             game1.game1(player, 1500, 680)
-            
         if globalv.flag_dog:
             if (checknpc(0, 5)=="dog") or (checknpc(0, -5)=="dog") or (checknpc(5, 0)=="dog") or (checknpc(-5, 0)=="dog"):  
                 dialogue.dialogue(player, hero.rect.x, hero.rect.y, "dog")
