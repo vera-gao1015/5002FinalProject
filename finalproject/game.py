@@ -6,6 +6,7 @@ import petroom
 import chiefroom
 import globalv
 from box import Box
+import gameevent 
 
 def game(player, x, y):
     pygame.init()
@@ -97,12 +98,7 @@ def game(player, x, y):
                 return False
         return True
 
-    list_coordinates_box = [(35, 520),(1285,100),(1450,760),(790, 500),(360, 200),(1500, 370),(850, 180)]
-    
-    boxes = []
-    for box in list_coordinates_box:
-        box = Box(box[0], box[1])
-        boxes.append(box)
+
     
     def checkbox():
         for box in boxes:
@@ -113,6 +109,12 @@ def game(player, x, y):
     while True:
         screen.blit(bgpic, (0, 0))
         player_group.draw(screen)
+        list_coordinates_box = [(35, 520),(1285,100),(1450,760),(790, 500),(360, 200),(1500, 370),(850, 180)]
+    
+        boxes = []
+        for box in list_coordinates_box:
+            box = Box(box[0], box[1])
+            boxes.append(box)
         for box in boxes:
             box.draw(screen) 
         
@@ -129,7 +131,10 @@ def game(player, x, y):
                 if event.key == pygame.K_SPACE:                  # Interact with the box
                     return_box = checkbox()
                     if return_box:              # Player near the box
-                        return_box.toggle()
+                        game_event = return_box.toggle()
+                        print(game_event)
+                        gameevent.event("game", game_event, player, hero.rect.x, hero.rect.y)
+
 
         keys = pygame.key.get_pressed()
         if keys[pygame.K_DOWN] and hero.rect.y + hero.rect.height < height and checkobstacle(0, 5):

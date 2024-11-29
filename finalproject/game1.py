@@ -3,6 +3,7 @@ import game
 import chooseplayer
 import petroom
 import globalv
+import gameevent
 from box import Box
 
 def game1(player, x, y):
@@ -104,7 +105,9 @@ def game1(player, x, y):
                 if event.key == pygame.K_SPACE:                  # Interact with the box
                     return_box = checkbox()
                     if return_box:              # Player near the box
-                        return_box.toggle()
+                        game_event = return_box.toggle()
+                        print(game_event)
+                        gameevent.event("game1", game_event, player, hero.rect.x, hero.rect.y)
 
         keys = pygame.key.get_pressed()
         if keys[pygame.K_DOWN] and hero.rect.y + hero.rect.height < height and checkobstacle(0, 5):
