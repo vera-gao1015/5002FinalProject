@@ -30,8 +30,6 @@ def begin():
                 if newgame_button.collidepoint(event.pos):
                     chooseplayer.chooseplayer()
 
-
-
         pygame.display.update()
         clock.tick(60)
 

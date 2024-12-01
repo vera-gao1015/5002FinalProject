@@ -1,6 +1,5 @@
 import pygame
 import game
-import game1
 import globalv
 import petroom
 
@@ -44,7 +43,7 @@ def dialogue(player, x, y, npcname):
 
     dialogue_blank = pygame.image.load("picture/dialogue_blank.png")
     dialogue_blank = pygame.transform.scale(dialogue_blank, (width-55, 200))
-    dialogue_blank_rect = dialogue_dog.get_rect()
+    dialogue_blank_rect = dialogue_blank.get_rect()
     dialogue_blank_rect.x, dialogue_blank_rect.y = 30, 400
 
     address = "picture/" + player + ".png" 
@@ -60,7 +59,7 @@ def dialogue(player, x, y, npcname):
     player_name = ["Siyu", "Vera", "Gloria", "Crystal", "Vivi"]
     font1 = pygame.font.SysFont("Arial", 30)
 
-    dialogue_index = 0  # 初始化对话索引
+    dialogue_index = 0 
     dialogues_dog = [
         ["Hi "+ player_name[int(player[-1])] +",", "I'm the little dog from Brave Village. You're the first warrior to come here, ", "and I've been waiting for you for so long! ", "Our village chief has gone missing. Can you help me find him?"],
         ["Oh, poor village, what happened here? ", "When did the village chief go missing?"],
@@ -88,7 +87,6 @@ def dialogue(player, x, y, npcname):
     text2_rect = text2.get_rect()
     text2_rect.topleft = (1000, 540)
  
-
     while True:
         screen.blit(bgpic, (0, 0))
         player_group.draw(screen)
@@ -196,7 +194,6 @@ def dialogue(player, x, y, npcname):
                             print(globalv.flag_dog, globalv.flag_cat) 
                             game.game(player, x-10, y-10)
                             
-        
         pygame.display.update()
         clock.tick(60)
 

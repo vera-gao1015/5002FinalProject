@@ -20,15 +20,12 @@ def chooseplayer():
     player5_image = pygame.image.load("picture/hero4.png")
 
     player_image = [player1_image, player2_image, player3_image, player4_image, player5_image]
-    # for i in player_image:
-    #     i = pygame.transform.scale(i, (200, 200))
     
-    # 定义角色选择框的矩形
-    player1_rect = pygame.Rect(250, 250, 200, 200)  # 玩家 1 的位置
-    player2_rect = pygame.Rect(550, 250, 200, 200)  # 玩家 2 的位置
-    player3_rect = pygame.Rect(100, 550, 200, 200)  # 玩家 3 的位置
-    player4_rect = pygame.Rect(400, 550, 200, 200)  # 玩家 4 的位置
-    player5_rect = pygame.Rect(700, 550, 200, 200)  # 玩家 5 的位置
+    player1_rect = pygame.Rect(250, 250, 200, 200)  
+    player2_rect = pygame.Rect(550, 250, 200, 200)  
+    player3_rect = pygame.Rect(100, 550, 200, 200)  
+    player4_rect = pygame.Rect(400, 550, 200, 200)  
+    player5_rect = pygame.Rect(700, 550, 200, 200)  
 
     player_rect = [player1_rect, player2_rect, player3_rect, player4_rect, player5_rect]
     
@@ -43,25 +40,24 @@ def chooseplayer():
     
     globalv.flag_dog = True
     globalv.flag_cat = True
+    globalv.get_dog = False
+    globalv.get_cat = False
 
     while True:
         screen.blit(choose,(0, 0))
-        screen.blit(text, (150, 100))  # 显示标题
-        screen.blit(text1, (300, 450))  # 显示标题
-        screen.blit(text2, (610, 450))  # 显示标题
-        screen.blit(text3, (130, 750))  # 显示标题
-        screen.blit(text4, (420, 750))  # 显示标题
-        screen.blit(text5, (770, 750))  # 显示标题
+        screen.blit(text, (150, 100))  
+        screen.blit(text1, (300, 450)) 
+        screen.blit(text2, (610, 450))  
+        screen.blit(text3, (130, 750))  
+        screen.blit(text4, (420, 750))  
+        screen.blit(text5, (770, 750))  
 
-        # 绘制角色图片
         for i in range(len(player_image)):
             screen.blit(player_image[i], player_rect[i])
 
-        # 绘制边框
         for i in player_rect:
             pygame.draw.rect(screen, (255, 255, 255), i, 5)
 
-        # 事件处理
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()

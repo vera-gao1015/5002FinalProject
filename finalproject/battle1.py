@@ -2,10 +2,10 @@ import pygame
 import game
 import game1
 import globalv
-import petroom
+import clueroom
 import random
 
-def battle(player, x, y):
+def battle(gameversion, player, x, y):
     pygame.init()
 
     width, height = 1600, 900
@@ -46,11 +46,6 @@ def battle(player, x, y):
     cat_rect = cat.get_rect()
     cat_rect.x, cat_rect.y = 750, 680
 
-    npc = [{"name": "dog", "image": dog, "rect": dog_rect},
-           {"name": "cat", "image": cat, "rect": cat_rect},
-           {"name": "chiefroom", "image": None, "rect": (206*scale_width, 213*scale_height, 60*scale_width, 45*scale_height)},
-            ]
-
     address = "picture/" + player + ".png" 
     hero_image = pygame.transform.scale(pygame.image.load(address), (150, 150))
     hero = pygame.sprite.Sprite()
@@ -65,6 +60,8 @@ def battle(player, x, y):
     flag_shoot = True
     flag_jump = False
     jump = 0
+
+    clue_selected = False
     
     while True:
         screen.blit(bgpic, (0, 0))
@@ -92,9 +89,12 @@ def battle(player, x, y):
             
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if return_button.collidepoint(event.pos):
-                    game.game(player, x, y)
+                    if gameversion == "game1":
+                        game1.game1(player, x, y)
+                    elif gameversion == "game":
+                        game.game(player, x, y)
                 if try_button.collidepoint(event.pos):
-                    battle(player, x, y)
+                    battle(gameversion, player, x, y)
 
         keys = pygame.key.get_pressed()
         if keys[pygame.K_UP] and not flag_jump:
@@ -138,18 +138,18 @@ def battle(player, x, y):
 
         for bullet in player_bullet[:]:
             bullet.x += 10
-            if bullet.colliderect(boss_rect):  # Hit monster
+            if bullet.colliderect(boss_rect): 
                 player_bullet.remove(bullet)
                 boss_health -= 5
-            elif bullet.x > width:  # Out of bounds
+            elif bullet.x > width: 
                 player_bullet.remove(bullet)
 
         for bullet in boss_bullet[:]:
             bullet.x -= 10
-            if bullet.colliderect(hero.rect):  # Hit player
+            if bullet.colliderect(hero.rect): 
                 boss_bullet.remove(bullet)
                 player_health -= 5
-            elif bullet.x < 0:  # Out of bounds
+            elif bullet.x < 0: 
                 boss_bullet.remove(bullet)
         
         if player_health <= 0:
@@ -169,20 +169,42 @@ def battle(player, x, y):
             pygame.draw.rect(screen, (255, 255, 255), return_button)
             screen.blit(text5, (return_button.x + 75, return_button.y + 12))
         
-        if boss_health <= 0:
+        if boss_health <= 90:
             screen.fill((0, 0, 0))
             win = pygame.image.load("picture/win.jpg")
             win = pygame.transform.scale(win, (1000, 500))
             screen.blit(win, (320, 25))
-
             text5 = font.render("Return", True, (0, 0, 0))
             return_button = pygame.Rect(680, 500, 300, 72)
             pygame.draw.rect(screen, (0, 0, 0), return_button.inflate(8, 8))
             pygame.draw.rect(screen, (255, 255, 255), return_button)
             screen.blit(text5, (return_button.x + 80, return_button.y + 12))
+
+            if globalv.get_dog:
+                screen.blit(dog, (30, 700))
+            if globalv.get_cat:
+                screen.blit(cat, (30, 700))
+            
+
+            if not clue_selected:
+                clue_now = random.choice(globalv.question_clues)
+                while clue_now["state"] == True:
+                    clue_now = random.choice(globalv.question_clues)
+                clue_selected = True
+                globalv.get_clues.append(clue_now["clue"])
+                clue_now["state"] = True
+                    
+            font1 = pygame.font.SysFont("Arial", 30)
+            text1 = font1.render("You got a new clue! Press shift to check!", True, (0, 0, 0))
+            reward_button = pygame.Rect(150, 700, 600, 60)
+            pygame.draw.rect(screen, (0, 0, 0), reward_button.inflate(8, 8))
+            pygame.draw.rect(screen, (255, 255, 255), reward_button)
+            screen.blit(text1, (reward_button.x + (reward_button.width - text1.get_width()) // 2, reward_button.y + (reward_button.height - text1.get_height()) // 2))
+            if keys[pygame.K_LSHIFT]:
+                clueroom.clueroom(gameversion, player, x, y)
         
         pygame.display.update()
         clock.tick(60)
 
 if __name__ == "__main__":
-    battle("hero0", 50, 700)
+    battle("game", "hero0", 50, 700)

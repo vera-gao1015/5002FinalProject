@@ -3,7 +3,7 @@ import game
 import game1
 import globalv
 
-def petroom(gamename, x, y, player):
+def petroom(gameversion, x, y, player):
     pygame.init()
  
     print("pet: ", globalv.get_dog, globalv.get_cat)
@@ -50,9 +50,9 @@ def petroom(gamename, x, y, player):
                 exit()
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if return_button.collidepoint(event.pos):
-                    if gamename == "game1":
+                    if gameversion == "game1":
                         game1.game1(player, x, y)
-                    elif gamename == "game":
+                    elif gameversion == "game":
                         game.game(player, x, y)
 
         pygame.display.update()

@@ -7,6 +7,7 @@ import chiefroom
 import globalv
 from box import Box
 import gameevent 
+import clueroom
 
 def game(player, x, y):
     pygame.init()
@@ -22,7 +23,7 @@ def game(player, x, y):
     bgpic = pygame.transform.scale(bgpic, (width, height))
     scale_width = width / original_width
     scale_height = height / original_height
-    # print(scale_width, scale_height)
+    
     dog = pygame.image.load("picture/dog.ico")
     dog = pygame.transform.scale(dog, (30*scale_width, 30*scale_height))
     dog_rect = dog.get_rect()
@@ -47,11 +48,18 @@ def game(player, x, y):
     player_group = pygame.sprite.Group()
     player_group.add(hero)
 
+    tornado = pygame.image.load("picture/tornado.png")
+    tornado = pygame.transform.scale(tornado, (150, 120))
+
+    dialogue_blank = pygame.image.load("picture/dialogue_blank.png")
+    dialogue_blank = pygame.transform.scale(dialogue_blank, (width-55, 220))
+
+    font1 = pygame.font.SysFont("Arial", 30)
+    text1 = font1.render("It seems something has appeared at the far left of the road...", True, (255, 255, 255))
+
     def checknpc(x, y):
         new = hero.rect.move(x, y)
         for i in npc:
-            # pygame.draw.rect(screen, (255, 255, 255), i["rect"], 5)
-            # pygame.display.update()
             if new.colliderect(i["rect"]):
                 if i["name"] == "dog":
                     return "dog"
@@ -92,14 +100,10 @@ def game(player, x, y):
                      pygame.Rect(850, 180, 70, 70),
                     ]
         for i in obstacles:
-            # pygame.draw.rect(screen, (255, 255, 255), i, 5)
-            # pygame.display.update()
             if new.colliderect(i):
                 return False
         return True
 
-
-    
     def checkbox():
         for box in boxes:
             if hero.rect.inflate(10, 10).colliderect(box.rect):
@@ -109,7 +113,7 @@ def game(player, x, y):
     while True:
         screen.blit(bgpic, (0, 0))
         player_group.draw(screen)
-        list_coordinates_box = [(35, 520),(1285,100),(1450,760),(790, 500),(360, 200),(1500, 370),(850, 180)]
+        list_coordinates_box = [(35, 520),(1285,120),(1450,760),(790, 500),(360, 200),(1500, 370),(850, 180)]
     
         boxes = []
         for box in list_coordinates_box:
@@ -128,13 +132,12 @@ def game(player, x, y):
                 pygame.quit()
                 exit()
             if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_SPACE:                  # Interact with the box
+                if event.key == pygame.K_SPACE:                 
                     return_box = checkbox()
-                    if return_box:              # Player near the box
+                    if return_box:             
                         game_event = return_box.toggle()
                         print(game_event)
                         gameevent.event("game", game_event, player, hero.rect.x, hero.rect.y)
-
 
         keys = pygame.key.get_pressed()
         if keys[pygame.K_DOWN] and hero.rect.y + hero.rect.height < height and checkobstacle(0, 5):
@@ -159,8 +162,16 @@ def game(player, x, y):
             chooseplayer.chooseplayer()
         if keys[pygame.K_TAB]:
             petroom.petroom("game", hero.rect.x, hero.rect.y, player)
-            
+        if keys[pygame.K_LSHIFT]:
+            clueroom.clueroom("game", player, hero.rect.x, hero.rect.y)
         
+        if globalv.box_count == 12 and globalv.flag_see:
+            screen.blit(dialogue_blank, (30, 400))
+            screen.blit(tornado, (150, 450))
+            screen.blit(text1, (350, 490))
+            if keys[pygame.K_DOWN] or keys[pygame.K_UP] or keys[pygame.K_LEFT] or keys[pygame.K_RIGHT]:
+                globalv.flag_see = False
+            
         pygame.display.update()
         clock.tick(60)
 
