@@ -30,7 +30,7 @@ def battle(gameversion, player, x, y):
     bossbullet_rect = bossbullet.get_rect()
     boss_bullet = []
 
-    dog = pygame.image.load("picture/dog.ico")
+    dog = pygame.image.load("picture/dog.png")
     dog = pygame.transform.scale(dog, (100, 100))
     dog_rect = dog.get_rect()
     dog_rect.x, dog_rect.y = 750, 680
@@ -158,7 +158,7 @@ def battle(gameversion, player, x, y):
             screen.blit(text4, (try_button.x + 55, try_button.y + 12))
 
         
-        if boss_health <= 90:
+        if boss_health <= 0:
             flag_win = True
             screen.fill((0, 0, 0))
             win = pygame.image.load("picture/win.jpg")

@@ -73,7 +73,7 @@ def chooseplayer():
                 for i in range(len(player_rect)):
                     if player_rect[i].collidepoint(event.pos):
                         player = "hero" + str(i)
-                        game.game(player, 42, 672)
+                        game.game(player, 1100, 30)
 
         pygame.display.update()
         clock.tick(60)

@@ -18,15 +18,15 @@ def dialogue(player, x, y, npcname):
     scale_width = width / original_width
     scale_height = height / original_height
 
-    dog = pygame.image.load("picture/dog.ico")
-    dog = pygame.transform.scale(dog, (30*scale_width, 30*scale_height))
+    dog = pygame.image.load("picture/dog.png")
+    dog = pygame.transform.scale(dog, (45*scale_width, 45*scale_height))
     dog_rect = dog.get_rect()
-    dog_rect.x, dog_rect.y = 270*scale_width, 205*scale_height
+    dog_rect.x, dog_rect.y = 260*scale_width, 190*scale_height
 
     cat = pygame.image.load("picture/cat.png")
-    cat = pygame.transform.scale(cat, (40*scale_width, 40*scale_height))
+    cat = pygame.transform.scale(cat, (40*scale_width, 60*scale_height))
     cat_rect = cat.get_rect()
-    cat_rect.x, cat_rect.y = 600*scale_width, 430*scale_height
+    cat_rect.x, cat_rect.y = 610*scale_width, 430*scale_height
     npc = [{"name": "dog", "image": dog, "rect": dog_rect},
            {"name": "cat", "image": cat, "rect": cat_rect},
             ]

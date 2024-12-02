@@ -26,16 +26,16 @@ def event(gameversion, gameevent, player, x, y):
     bgpic1 = pygame.image.load("picture/map1.jpg")
     original_width, original_height = bgpic1.get_width(), bgpic1.get_height()
     bgpic1 = pygame.transform.scale(bgpic1, (width, height))
-   
-    dog = pygame.image.load("picture/dog.ico")
-    dog = pygame.transform.scale(dog, (30*scale_width, 30*scale_height))
+
+    dog = pygame.image.load("picture/dog.png")
+    dog = pygame.transform.scale(dog, (45*scale_width, 45*scale_height))
     dog_rect = dog.get_rect()
-    dog_rect.x, dog_rect.y = 270*scale_width, 205*scale_height
+    dog_rect.x, dog_rect.y = 260*scale_width, 190*scale_height
 
     cat = pygame.image.load("picture/cat.png")
-    cat = pygame.transform.scale(cat, (40*scale_width, 40*scale_height))
+    cat = pygame.transform.scale(cat, (40*scale_width, 60*scale_height))
     cat_rect = cat.get_rect()
-    cat_rect.x, cat_rect.y = 600*scale_width, 430*scale_height
+    cat_rect.x, cat_rect.y = 610*scale_width, 430*scale_height
     
     npc = [{"name": "dog", "image": dog, "rect": dog_rect},
            {"name": "cat", "image": cat, "rect": cat_rect},
@@ -141,7 +141,7 @@ def event(gameversion, gameevent, player, x, y):
             screen.blit(box1, (150, 450))
             screen.blit(text3, (320, 470))
             screen.blit(text4, (830, 540))
-            if keys[pygame.K_LSHIFT]:
+            if keys[pygame.K_LSHIFT] or keys[pygame.K_RSHIFT]:
                     clueroom.clueroom(gameversion, player, x, y)
             if keys[pygame.K_RETURN]:
                 if gameversion == "game":
@@ -154,7 +154,7 @@ def event(gameversion, gameevent, player, x, y):
             screen.blit(box1, (150, 450))
             screen.blit(text5, (320, 470))
             screen.blit(text4, (830, 540))
-            if keys[pygame.K_LSHIFT]:
+            if keys[pygame.K_LSHIFT] or keys[pygame.K_RSHIFT]:
                     clueroom.clueroom(gameversion, player, x, y)
             if keys[pygame.K_RETURN]:
                 if gameversion == "game":
@@ -216,7 +216,7 @@ def event(gameversion, gameevent, player, x, y):
                         print(globalv.get_clues)
                         clue_now["state"] = True
                         print(clue_now)
-                    if keys[pygame.K_LSHIFT]:
+                    if keys[pygame.K_LSHIFT] or keys[pygame.K_RSHIFT]:
                         clueroom.clueroom(gameversion, player, x, y)
                     if keys[pygame.K_RETURN]:
                         question_now["state"] = True
@@ -245,7 +245,7 @@ def event(gameversion, gameevent, player, x, y):
                 print(globalv.get_clues)
                 clue_now["state"] = True
                 print(clue_now)
-            if keys[pygame.K_LSHIFT]:
+            if keys[pygame.K_LSHIFT] or keys[pygame.K_RSHIFT]:
                 clueroom.clueroom(gameversion, player, x, y)
             if keys[pygame.K_RETURN]:
                 if gameversion == "game":
