@@ -27,7 +27,6 @@ Before you start our game, please take a moment to read this guide — it will h
 5. [Game Flow](#game-flow)  
 6. [Interface Description](#interface-description)  
 7. [FAQ](#faq)  
-8. [Developer Information](#developer-information)
 
 ---
 
