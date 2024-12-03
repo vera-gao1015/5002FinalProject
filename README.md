@@ -1,5 +1,6 @@
 [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://github.com/codespaces/new?repository=vera-gao1015/5002final)
-
+Hi, before you start our game, please read the instructions below. It will help you play our game better!
+Our team name is Five, including Siyu Jin and Wei Gao. 
 
 # 🎮 The Journey of the Brave 
 
