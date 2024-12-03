@@ -162,7 +162,7 @@ def game(player, x, y):
             chooseplayer.chooseplayer()
         if keys[pygame.K_TAB]:
             petroom.petroom("game", hero.rect.x, hero.rect.y, player)
-        if keys[pygame.K_LSHIFT]:
+        if keys[pygame.K_LSHIFT] or keys[pygame.K_RSHIFT]:
             clueroom.clueroom("game", player, hero.rect.x, hero.rect.y)
         
         if globalv.box_count == 12 and globalv.flag_see:
