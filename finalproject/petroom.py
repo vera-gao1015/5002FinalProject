@@ -29,15 +29,8 @@ def petroom(gameversion, x, y, player):
     cat_rect = cat.get_rect()
     cat_rect.x, cat_rect.y = width/2, height/2
 
-    return_font = pygame.font.SysFont("Arial", 40, bold=True)
-    return_button = pygame.Rect(1150, 800, 170, 72)
-    button_text = return_font.render("Return", True, (0, 0, 0))
-
     while True:
         screen.blit(bgpic, (0, 0))
-        pygame.draw.rect(screen, (0, 0, 0), return_button.inflate(8, 8))
-        pygame.draw.rect(screen, (255, 255, 255), return_button)
-        screen.blit(button_text, (return_button.x + 20, return_button.y + 12))
 
         if globalv.get_dog:
             screen.blit(dog, dog_rect)
@@ -48,15 +41,16 @@ def petroom(gameversion, x, y, player):
             if event.type == pygame.QUIT:
                 pygame.quit()
                 exit()
-            if event.type == pygame.MOUSEBUTTONDOWN:
-                if return_button.collidepoint(event.pos):
-                    if gameversion == "game1":
-                        game1.game1(player, x, y)
-                    elif gameversion == "game":
-                        game.game(player, x, y)
+        
+        keys = pygame.key.get_pressed()
+        if keys[pygame.K_RETURN]:
+            if gameversion == "game1":
+                game1.game1(player, x, y)
+            elif gameversion == "game":
+                game.game(player, x, y)
 
         pygame.display.update()
         clock.tick(60)
 
 if __name__ == "__main__":
-    petroom("game", 550, 220, "hero0")
+    petroom("game", 550, 200, "hero0")
