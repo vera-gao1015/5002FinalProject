@@ -53,7 +53,8 @@ playgame file: finalproject/**begin.py**
 - **Proceed/Close dialogues**: Return/Enter  
 - **Open treasure box**: Space  
 - **Switch to pet room**: Tab  
-- **Switch to clue room**: Shift  
+- **Switch to clue room**: Shift
+- **Exit the room**: Return/Enter
 - **Answer questions**: A/B/C/D keys  
 - **Fire bullets `in combat`**: Space  
 - **Jump `in combat`**: Up arrow key  
