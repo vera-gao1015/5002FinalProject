@@ -55,8 +55,8 @@ Before you start our game, please take a moment to read this guide — it will h
 - **Switch to pet room**: Tab  
 - **Switch to clue room**: Shift  
 - **Answer questions**: A/B/C/D keys  
-- **Fire bullets in combat**: Space  
-- **Jump in combat**: Up arrow key  
+- **Fire bullets `in combat`**: Space  
+- **Jump `in combat`**: Up arrow key  
 
 ---
 
