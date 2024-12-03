@@ -35,9 +35,8 @@
 
 ---
 
-## 🎮 Gameplay and Controls
+## 🎮 Basic Controls
 
-### Basic Controls
 - **Move character**: Arrow keys  
 - **Proceed/Close dialogues**: Return/Enter  
 - **Open treasure chest**: Space  
@@ -69,12 +68,11 @@ Players take on the role of a **warrior** to find the missing **chief**. During 
 ## 🖥️ Interface Description
 
 ### **Main Interface**
-- The main interface displays the game environment and allows players to interact with characters like **Yogurt** or **Maomao**.  
-- Currently, there are no indicators for health, score, or task progress.
+- The main interface displays the game environment. It allows players to interact with characters like **Yogurt** or **Maomao** and open boxes.  
 
 ### **Combat Interface**
-- Players can jump or fire bullets to battle monsters.  
-- The combat interface shows real-time actions for both the player and enemies.  
+- Players can jump or fire bullets to battle monsters and dragon.  
+- The combat interface shows real-time bloods and actions for both the player and enemies.  
 
 ---
 
