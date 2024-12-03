@@ -2,7 +2,7 @@
 
 ---
 ## ✨ Welcome Message
-Hi there!  
+Hi there!  👋
 Before you start our game, please take a moment to read this guide — it will help you enjoy the game better! 😊
 
 👨‍💻 Our team name is **Five**, and the team members are:  
@@ -20,13 +20,13 @@ Before you start our game, please take a moment to read this guide — it will h
 ---
 
 ## 📖 Table of Contents
-1. [Game Introduction](#game-introduction)  
-2. [Requirements](#requirements)  
-3. [Basic Controls](#basic-controls)  
-4. [Objectives](#objectives)  
-5. [Game Flow](#game-flow)  
-6. [Interface Description](#interface-description)  
-7. [FAQ](#faq)  
+1. [🌟 Game Introduction](#game-introduction)  
+2. [💻 Requirements](#requirements)  
+3. [🎮 Basic Controls](#basic-controls)  
+4. [🎯 Objectives](#objectives)  
+5. [🚀 Game Flow](#game-flow)  
+6. [🖥️ Interface Description](#interface-description)  
+7. [❓ FAQ](#faq)  
 
 ---
 
