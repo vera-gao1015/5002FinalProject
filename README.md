@@ -20,13 +20,13 @@ Before you start our game, please take a moment to read this guide — it will h
 ---
 
 ## 📖 Table of Contents
-1. [🌟 Game Introduction](#game-introduction)  
-2. [💻 Requirements](#requirements)  
-3. [🎮 Basic Controls](#basic-controls)  
-4. [🎯 Objectives](#objectives)  
-5. [🚀 Game Flow](#game-flow)  
-6. [🖥️ Interface Description](#interface-description)  
-7. [❓ FAQ](#faq)  
+1. [🌟 Game Introduction](#-game-introduction)  
+2. [💻 Requirements](#-requirements)  
+3. [🎮 Basic Controls](#-basic-controls)  
+4. [🎯 Objectives](#-objectives)  
+5. [🚀 Game Flow](#-game-flow)  
+6. [🖥️ Interface Description](#-interface-description)  
+7. [❓ FAQ](#-faq) 
 
 ---
 
@@ -49,7 +49,7 @@ Before you start our game, please take a moment to read this guide — it will h
 ## 🎮 Basic Controls
 
 - **Move character**: Arrow keys  
-- **Proceed/Close dialogues**: Enter  
+- **Proceed/Close dialogues**: Return/Enter  
 - **Open treasure box**: Space  
 - **Switch to pet room**: Tab  
 - **Switch to clue room**: Shift  
@@ -79,11 +79,11 @@ Your mission as a brave warrior is to:
 ## 🖥️ Interface Description
 
 ### **Main Interface**
-- The main interface displays the game environment, allowing players to interact with characters like **Yogurt** or **Maomao**, as well as open treasure chests.
+- The main interface displays the game environment, allowing players to interact with characters like **Yogurt** or **Maomao**, as well as open treasure boxes.
 
 ### **Combat Interface**
 - In the combat interface, players can jump or fire bullets to battle monsters and the dragon.  
-- Real-time health and actions for both the player and enemies are displayed.
+- Real-time health bars and actions for both the player and enemies are displayed.
 
 ---
 
