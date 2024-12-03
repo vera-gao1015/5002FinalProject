@@ -7,8 +7,9 @@ Before you start our game, please take a moment to read this guide — it will h
 
 👨‍💻 Our team name is **Five**, and the team members are:  
 - **Siyu Jin** 
-- **Wei Gao**  
+- **Wei Gao**
 
+playgame file: finalproject/**begin.py**
 
 ---
 
