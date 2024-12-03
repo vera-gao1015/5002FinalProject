@@ -1,27 +1,38 @@
 [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://github.com/codespaces/new?repository=vera-gao1015/5002final)
-Hi, before you start our game, please read the instructions below. It will help you play our game better!
-Our team name is Five, including Siyu Jin and Wei Gao. 
+
+---
+## ✨ Welcome Message
+Hi there!  
+Before you start our game, please take a moment to read this guide — it will help you enjoy the game better! 😊
+
+👨‍💻 Our team name is **Five**, and the team members are:  
+- **Siyu Jin** 
+- **Wei Gao**  
+
+
+---
 
 # 🎮 The Journey of the Brave 
 
 > **An exciting journey of courage and exploration!**  
-> A fun learning game developed with Pygame, where players enhance their python basic knowledge and operational skills through this adventure.
+> A fun learning game developed with Pygame, where players could enhance their python basic knowledge and operational skills through this adventure.
 
 ---
 
 ## 📖 Table of Contents
 1. [Game Introduction](#game-introduction)  
 2. [Requirements](#requirements)  
-3. [Gameplay and Controls](#gameplay-and-controls)  
-4. [Objectives and Flow](#objectives-and-flow)  
-5. [Interface Description](#interface-description)  
-6. [FAQ](#faq)  
-7. [Developer Information](#developer-information)
+3. [Basic Controls](#basic-controls)  
+4. [Objectives](#objectives)  
+5. [Game Flow](#game-flow)  
+6. [Interface Description](#interface-description)  
+7. [FAQ](#faq)  
+8. [Developer Information](#developer-information)
 
 ---
 
 ## 🌟 Game Introduction
-**The Journey of the Brave** is an adventure game set in a peaceful village. The village chief has mysteriously disappeared, plunging the village into panic. Players take on the role of a brave warrior, embarking on a journey to find the chief. Along the way, they unlock treasure chests, solve puzzles, and defeat monsters, ultimately facing a mighty dragon to rescue the chief.
+**The Journey of the Brave** is an adventure game set in a peaceful village. One day, the village chief mysteriously disappears, causing panic among the villagers. Players take on the role of a brave warrior, embarking on an adventure to rescue the chief. Along the way, you'll unlock treasure boxes, solve puzzles, defeat monsters, and ultimately face a mighty dragon.
 
 - **Game Type**: Adventure/Puzzle/Combat  
 - **Language**: English  
@@ -39,27 +50,27 @@ Our team name is Five, including Siyu Jin and Wei Gao.
 ## 🎮 Basic Controls
 
 - **Move character**: Arrow keys  
-- **Proceed/Close dialogues**: Return/Enter  
-- **Open treasure chest**: Space  
+- **Proceed/Close dialogues**: Enter  
+- **Open treasure box**: Space  
 - **Switch to pet room**: Tab  
 - **Switch to clue room**: Shift  
 - **Answer questions**: A/B/C/D keys  
 - **Fire bullets in combat**: Space  
-- **Jump in combat**: Up Arrow key  
+- **Jump in combat**: Up arrow key  
 
 ---
 
-## 🎯 Objectives and Flow
-
-### Game Objectives
-Players take on the role of a **warrior** to find the missing **chief**. During the journey, you need to:  
-1. **Unlock treasure chests** to gather clues.  
+## 🎯 Objectives
+Your mission as a brave warrior is to:  
+1. **Unlock treasure boxes** to gather clues.  
 2. **Answer questions** or **defeat monsters** to progress.  
 3. **Locate and battle the dragon**, the final boss.  
-4. **Rescue the chief** to complete the game!
+4. **Rescue the chief** and bring peace back to the village!
 
-### Game Flow
-1. **Starting Point**: Begin at the top-right corner of the map, meet either the dog **Yogurt** or the cat **Maomao**, and accept their request.
+---
+
+## 🚀 Game Flow
+1. **Starting Point**: Begin at the top-right corner of the map. Meet either the dog **Yogurt** or the cat **Maomao**, and accept their request.
 2. **Chief’s House**: Follow hints to explore the chief’s house for initial clues.
 3. **Forest Adventure**: Traverse the forest, unlock treasure chests, and solve puzzles or fight monsters.
 4. **Final Challenge**: Face the dragon, defeat it in combat, and rescue the chief!
@@ -69,11 +80,11 @@ Players take on the role of a **warrior** to find the missing **chief**. During 
 ## 🖥️ Interface Description
 
 ### **Main Interface**
-- The main interface displays the game environment. It allows players to interact with characters like **Yogurt** or **Maomao** and open boxes.  
+- The main interface displays the game environment, allowing players to interact with characters like **Yogurt** or **Maomao**, as well as open treasure chests.
 
 ### **Combat Interface**
-- Players can jump or fire bullets to battle monsters and dragon.  
-- The combat interface shows real-time bloods and actions for both the player and enemies.  
+- In the combat interface, players can jump or fire bullets to battle monsters and the dragon.  
+- Real-time health and actions for both the player and enemies are displayed.
 
 ---
 
@@ -93,15 +104,7 @@ Players take on the role of a **warrior** to find the missing **chief**. During 
 
 ---
 
-## 👨‍💻 Developer Information
-- **Team Members**:
-  - Siyu Jin
-  - Wei Gao
-- **GitHub**: [Project Repository](https://github.com/vera-gao1015/5002FinalProject)  
-
----
-
-### 🎉 Start your journey now! You will be an excellent warrior! 🫵🏻
+### 🎉 Start your journey now! You will be an excellent warrior! 🛡️⚔
 
 
 
