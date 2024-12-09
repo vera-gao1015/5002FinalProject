@@ -158,7 +158,7 @@ def battle(gameversion, player, x, y):
             screen.blit(text4, (try_button.x + 55, try_button.y + 12))
 
         
-        if boss_health <= 0:
+        elif boss_health <= 0:
             flag_win = True
             screen.fill((0, 0, 0))
             win = pygame.image.load("picture/win.jpg")

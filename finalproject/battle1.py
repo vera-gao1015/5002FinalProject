@@ -62,6 +62,7 @@ def battle(gameversion, player, x, y):
     jump = 0
 
     clue_selected = False
+    flag_win = False
     
     while True:
         screen.blit(bgpic, (0, 0))
@@ -88,11 +89,12 @@ def battle(gameversion, player, x, y):
                 exit()
             
             if event.type == pygame.MOUSEBUTTONDOWN:
-                if return_button.collidepoint(event.pos):
-                    if gameversion == "game1":
-                        game1.game1(player, x, y)
-                    elif gameversion == "game":
-                        game.game(player, x, y)
+                if flag_win:
+                    if return_button.collidepoint(event.pos):
+                        if gameversion == "game1":
+                            game1.game1(player, x, y)
+                        elif gameversion == "game":
+                            game.game(player, x, y)
                 if try_button.collidepoint(event.pos):
                     battle(gameversion, player, x, y)
 
@@ -169,7 +171,8 @@ def battle(gameversion, player, x, y):
             pygame.draw.rect(screen, (255, 255, 255), return_button)
             screen.blit(text5, (return_button.x + 75, return_button.y + 12))
         
-        if boss_health <= 0:
+        elif boss_health <= 0:
+            flag_win = True
             screen.fill((0, 0, 0))
             win = pygame.image.load("picture/win.jpg")
             win = pygame.transform.scale(win, (1000, 500))
