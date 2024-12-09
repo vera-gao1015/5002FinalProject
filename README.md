@@ -9,7 +9,7 @@ Before you start our game, please take a moment to read this guide — it will h
 - **Siyu Jin** 
 - **Wei Gao**
 
-## playgame file: [finalproject/**begin.py**](./finalproject/begin.py)
+## 👉 Click playgame file: [finalproject/**begin.py**](./finalproject/begin.py)
 
 
 ---
