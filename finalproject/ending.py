@@ -11,16 +11,16 @@ def ending():
     pygame.display.set_caption("Happy Ending")
     clock = pygame.time.Clock()
 
-    bgpic = pygame.image.load("picture/map1.jpg")
+    bgpic = pygame.image.load("finalproject/picture/map1.jpg")
     bgpic = pygame.transform.scale(bgpic, (width, height))
 
-    tornado = pygame.image.load("picture/tornado.png")
+    tornado = pygame.image.load("finalproject/picture/tornado.png")
     tornado = pygame.transform.scale(tornado, (150, 120))
 
-    chief = pygame.image.load("picture/chief.png")
+    chief = pygame.image.load("finalproject/picture/chief.png")
     chief = pygame.transform.scale(chief, (170, 170))
 
-    dialogue_blank = pygame.image.load("picture/dialogue_blank.png")
+    dialogue_blank = pygame.image.load("finalproject/picture/dialogue_blank.png")
     dialogue_blank = pygame.transform.scale(dialogue_blank, (width-55, 300))
 
     font1 = pygame.font.SysFont("Arial", 30)

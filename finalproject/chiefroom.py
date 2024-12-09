@@ -10,10 +10,10 @@ def chiefroom(x, y, player):
     pygame.display.set_caption("Chief Room")
     clock = pygame.time.Clock()
 
-    bgpic = pygame.image.load("picture/chiefroom.png")
+    bgpic = pygame.image.load("finalproject/picture/chiefroom.png")
     bgpic = pygame.transform.scale(bgpic, (width, height))
 
-    address = "picture/" + player + ".png" 
+    address = "finalproject/picture/" + player + ".png" 
     hero_image = pygame.transform.scale(pygame.image.load(address), (150, 150))
     hero = pygame.sprite.Sprite()
     hero.image = hero_image
@@ -22,13 +22,13 @@ def chiefroom(x, y, player):
     player_group = pygame.sprite.Group()
     player_group.add(hero)
 
-    dialogue_blank = pygame.image.load("picture/dialogue_blank.png")
+    dialogue_blank = pygame.image.load("finalproject/picture/dialogue_blank.png")
     dialogue_blank = pygame.transform.scale(dialogue_blank, (width-55, 220))
 
-    house = pygame.image.load("picture/house.png")
+    house = pygame.image.load("finalproject/picture/house.png")
     house = pygame.transform.scale(house, (150, 150))
 
-    clue = pygame.image.load("picture/clue.png")
+    clue = pygame.image.load("finalproject/picture/clue.png")
     clue = pygame.transform.scale(clue, (150, 150))
 
     font1 = pygame.font.SysFont("Arial", 30)

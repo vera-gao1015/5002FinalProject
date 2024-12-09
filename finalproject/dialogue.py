@@ -12,18 +12,18 @@ def dialogue(player, x, y, npcname):
     pygame.display.set_caption("New Game")
     clock = pygame.time.Clock()
 
-    bgpic = pygame.image.load("picture/map.jpg")
+    bgpic = pygame.image.load("finalproject/picture/map.jpg")
     original_width, original_height = bgpic.get_width(), bgpic.get_height()
     bgpic = pygame.transform.scale(bgpic, (width, height))
     scale_width = width / original_width
     scale_height = height / original_height
 
-    dog = pygame.image.load("picture/dog.png")
+    dog = pygame.image.load("finalproject/picture/dog.png")
     dog = pygame.transform.scale(dog, (45*scale_width, 45*scale_height))
     dog_rect = dog.get_rect()
     dog_rect.x, dog_rect.y = 260*scale_width, 190*scale_height
 
-    cat = pygame.image.load("picture/cat.png")
+    cat = pygame.image.load("finalproject/picture/cat.png")
     cat = pygame.transform.scale(cat, (40*scale_width, 60*scale_height))
     cat_rect = cat.get_rect()
     cat_rect.x, cat_rect.y = 610*scale_width, 430*scale_height
@@ -31,22 +31,22 @@ def dialogue(player, x, y, npcname):
            {"name": "cat", "image": cat, "rect": cat_rect},
             ]
     
-    dialogue_dog = pygame.image.load("picture/dialogue_dog.png")
+    dialogue_dog = pygame.image.load("finalproject/picture/dialogue_dog.png")
     dialogue_dog = pygame.transform.scale(dialogue_dog, (width-55, 200))
     dialogue_dog_rect = dialogue_dog.get_rect()
     dialogue_dog_rect.x, dialogue_dog_rect.y = 30, 400
 
-    dialogue_cat = pygame.image.load("picture/dialogue_cat.png")
+    dialogue_cat = pygame.image.load("finalproject/picture/dialogue_cat.png")
     dialogue_cat = pygame.transform.scale(dialogue_cat, (width-55, 200))
     dialogue_cat_rect = dialogue_cat.get_rect()
     dialogue_cat_rect.x, dialogue_cat_rect.y = 30, 400
 
-    dialogue_blank = pygame.image.load("picture/dialogue_blank.png")
+    dialogue_blank = pygame.image.load("finalproject/picture/dialogue_blank.png")
     dialogue_blank = pygame.transform.scale(dialogue_blank, (width-55, 200))
     dialogue_blank_rect = dialogue_blank.get_rect()
     dialogue_blank_rect.x, dialogue_blank_rect.y = 30, 400
 
-    address = "picture/" + player + ".png" 
+    address = "finalproject/picture/" + player + ".png" 
     hero_image = pygame.transform.scale(pygame.image.load(address), (55, 55))
     hero = pygame.sprite.Sprite()
     hero.image = hero_image
@@ -153,9 +153,9 @@ def dialogue(player, x, y, npcname):
                 newhero = pygame.transform.scale(hero.image, (150, 150))
                 screen.blit(newhero, (150, 420))
         
-            dialogue_now = dialogues_cat[dialogue_index]  # 获取当前对话
-            for i in range(len(dialogue_now)):  # 遍历当前对话的每一行
-                text = font1.render(dialogue_now[i], True, (255, 255, 255))  # 将每一行渲染为文本
+            dialogue_now = dialogues_cat[dialogue_index]  # get the current dialogue
+            for i in range(len(dialogue_now)):  # integrate each line for the current dialogue
+                text = font1.render(dialogue_now[i], True, (255, 255, 255))  
                 if dialogue_index == len(dialogues_cat) - 1 and i == len(dialogue_now) - 1:
                     screen.blit(text2, text2_rect)
                 if player[-1] == "1" or player[-1] == "2":

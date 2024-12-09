@@ -12,35 +12,35 @@ def battle(gameversion, player, x, y):
     pygame.display.set_caption("Final Battle")
     clock = pygame.time.Clock()
 
-    bgpic = pygame.image.load("picture/battle_bg.jpg")
+    bgpic = pygame.image.load("finalproject/picture/battle_bg.jpg")
     bgpic = pygame.transform.scale(bgpic, (width, height))
 
-    boss = pygame.image.load("picture/dragon.png")
+    boss = pygame.image.load("finalproject/picture/dragon.png")
     boss = pygame.transform.scale(boss, (300, 300))
     boss_rect = boss.get_rect()
     boss_rect.x, boss_rect.y = 1200, 580
 
-    playerbullet = pygame.image.load("picture/bullet.png")
+    playerbullet = pygame.image.load("finalproject/picture/bullet.png")
     playerbullet = pygame.transform.scale(playerbullet, (50, 50))
     playerbullet_rect = playerbullet.get_rect()
     player_bullet = []
 
-    bossbullet = pygame.image.load("picture/bullet.png")
+    bossbullet = pygame.image.load("finalproject/picture/bullet.png")
     bossbullet = pygame.transform.scale(bossbullet, (50, 50))
     bossbullet_rect = bossbullet.get_rect()
     boss_bullet = []
 
-    dog = pygame.image.load("picture/dog.png")
+    dog = pygame.image.load("finalproject/picture/dog.png")
     dog = pygame.transform.scale(dog, (100, 100))
     dog_rect = dog.get_rect()
     dog_rect.x, dog_rect.y = 750, 680
 
-    cat = pygame.image.load("picture/cat.png")
+    cat = pygame.image.load("finalproject/picture/cat.png")
     cat = pygame.transform.scale(cat, (100, 100))
     cat_rect = cat.get_rect()
     cat_rect.x, cat_rect.y = 750, 680
 
-    address = "picture/" + player + ".png" 
+    address = "finalproject/picture/" + player + ".png" 
     hero_image = pygame.transform.scale(pygame.image.load(address), (150, 150))
     hero = pygame.sprite.Sprite()
     hero.image = hero_image
@@ -147,7 +147,7 @@ def battle(gameversion, player, x, y):
         
         if player_health <= 0:
             screen.fill((0, 0, 0))
-            lose = pygame.image.load("picture/lose.jpg")
+            lose = pygame.image.load("finalproject/picture/lose.jpg")
             lose = pygame.transform.scale(lose, (1000, 500))
             screen.blit(lose, (320, 25))
 
@@ -161,7 +161,7 @@ def battle(gameversion, player, x, y):
         elif boss_health <= 0:
             flag_win = True
             screen.fill((0, 0, 0))
-            win = pygame.image.load("picture/win.jpg")
+            win = pygame.image.load("finalproject/picture/win.jpg")
             win = pygame.transform.scale(win, (1000, 500))
             screen.blit(win, (320, 25))
             text5 = font.render("Return", True, (0, 0, 0))

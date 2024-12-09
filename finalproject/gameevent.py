@@ -17,22 +17,22 @@ def event(gameversion, gameevent, player, x, y):
     pygame.display.set_caption("New Game")
     clock = pygame.time.Clock()
 
-    bgpic = pygame.image.load("picture/map.jpg")
+    bgpic = pygame.image.load("finalproject/picture/map.jpg")
     original_width, original_height = bgpic.get_width(), bgpic.get_height()
     bgpic = pygame.transform.scale(bgpic, (width, height))
     scale_width = width / original_width
     scale_height = height / original_height
 
-    bgpic1 = pygame.image.load("picture/map1.jpg")
+    bgpic1 = pygame.image.load("finalproject/picture/map1.jpg")
     original_width, original_height = bgpic1.get_width(), bgpic1.get_height()
     bgpic1 = pygame.transform.scale(bgpic1, (width, height))
 
-    dog = pygame.image.load("picture/dog.png")
+    dog = pygame.image.load("finalproject/picture/dog.png")
     dog = pygame.transform.scale(dog, (45*scale_width, 45*scale_height))
     dog_rect = dog.get_rect()
     dog_rect.x, dog_rect.y = 260*scale_width, 190*scale_height
 
-    cat = pygame.image.load("picture/cat.png")
+    cat = pygame.image.load("finalproject/picture/cat.png")
     cat = pygame.transform.scale(cat, (40*scale_width, 60*scale_height))
     cat_rect = cat.get_rect()
     cat_rect.x, cat_rect.y = 610*scale_width, 430*scale_height
@@ -41,30 +41,30 @@ def event(gameversion, gameevent, player, x, y):
            {"name": "cat", "image": cat, "rect": cat_rect},
             ]
     
-    dialogue_blank = pygame.image.load("picture/dialogue_blank.png")
+    dialogue_blank = pygame.image.load("finalproject/picture/dialogue_blank.png")
     dialogue_blank = pygame.transform.scale(dialogue_blank, (width-55, 220))
     dialogue_blank_rect = dialogue_blank.get_rect()
     dialogue_blank_rect.x, dialogue_blank_rect.y = 30, 400
 
-    boss = pygame.image.load("picture/boss.png")
+    boss = pygame.image.load("finalproject/picture/boss.png")
     boss = pygame.transform.scale(boss, (150, 150))
 
-    box1 = pygame.image.load("picture/box_open.png")
+    box1 = pygame.image.load("finalproject/picture/box_open.png")
     box1 = pygame.transform.scale(box1, (100, 100))
 
-    question = pygame.image.load("picture/question.png")
+    question = pygame.image.load("finalproject/picture/question.png")
     question = pygame.transform.scale(question, (100, 100))
 
-    wrong = pygame.image.load("picture/wrong.png")
+    wrong = pygame.image.load("finalproject/picture/wrong.png")
     wrong = pygame.transform.scale(wrong, (30, 30))
 
-    right = pygame.image.load("picture/right.png")
+    right = pygame.image.load("finalproject/picture/right.png")
     right = pygame.transform.scale(right, (30, 30))
 
-    clue = pygame.image.load("picture/clue.png")
+    clue = pygame.image.load("finalproject/picture/clue.png")
     clue = pygame.transform.scale(clue, (150, 150))
     
-    address = "picture/" + player + ".png" 
+    address = "finalproject/picture/" + player + ".png" 
     hero_image = pygame.transform.scale(pygame.image.load(address), (55, 55))
     hero = pygame.sprite.Sprite()
     hero.image = hero_image

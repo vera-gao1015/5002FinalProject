@@ -18,18 +18,18 @@ def game(player, x, y):
     pygame.display.set_caption("New Game")
     clock = pygame.time.Clock()
 
-    bgpic = pygame.image.load("picture/map.jpg")
+    bgpic = pygame.image.load("finalproject/picture/map.jpg")
     original_width, original_height = bgpic.get_width(), bgpic.get_height()
     bgpic = pygame.transform.scale(bgpic, (width, height))
     scale_width = width / original_width
     scale_height = height / original_height
     
-    dog = pygame.image.load("picture/dog.png")
+    dog = pygame.image.load("finalproject/picture/dog.png")
     dog = pygame.transform.scale(dog, (45*scale_width, 45*scale_height))
     dog_rect = dog.get_rect()
     dog_rect.x, dog_rect.y = 260*scale_width, 190*scale_height
 
-    cat = pygame.image.load("picture/cat.png")
+    cat = pygame.image.load("finalproject/picture/cat.png")
     cat = pygame.transform.scale(cat, (40*scale_width, 60*scale_height))
     cat_rect = cat.get_rect()
     cat_rect.x, cat_rect.y = 600*scale_width, 430*scale_height
@@ -39,7 +39,7 @@ def game(player, x, y):
            {"name": "chiefroom", "image": None, "rect": (206*scale_width, 213*scale_height, 60*scale_width, 45*scale_height)},
             ]
 
-    address = "picture/" + player + ".png" 
+    address = "finalproject/picture/" + player + ".png" 
     hero_image = pygame.transform.scale(pygame.image.load(address), (55, 55))
     hero = pygame.sprite.Sprite()
     hero.image = hero_image
@@ -48,10 +48,10 @@ def game(player, x, y):
     player_group = pygame.sprite.Group()
     player_group.add(hero)
 
-    tornado = pygame.image.load("picture/tornado.png")
+    tornado = pygame.image.load("finalproject/picture/tornado.png")
     tornado = pygame.transform.scale(tornado, (150, 120))
 
-    dialogue_blank = pygame.image.load("picture/dialogue_blank.png")
+    dialogue_blank = pygame.image.load("finalproject/picture/dialogue_blank.png")
     dialogue_blank = pygame.transform.scale(dialogue_blank, (width-55, 220))
 
     font1 = pygame.font.SysFont("Arial", 30)

@@ -13,18 +13,18 @@ def petroom(gameversion, x, y, player):
     pygame.display.set_caption("Pet Room")
     clock = pygame.time.Clock()
 
-    bgpic = pygame.image.load("picture/petroom.png")
+    bgpic = pygame.image.load("finalproject/picture/petroom.png")
     original_width, original_height = bgpic.get_width(), bgpic.get_height()
     bgpic = pygame.transform.scale(bgpic, (width, height))
     scale_width = width / original_width
     scale_height = height / original_height
 
-    dog = pygame.image.load("picture/dog.png")
+    dog = pygame.image.load("finalproject/picture/dog.png")
     dog = pygame.transform.scale(dog, (250*scale_width, 250*scale_height))
     dog_rect = dog.get_rect()
     dog_rect.x, dog_rect.y = width/2, height/2
 
-    cat = pygame.image.load("picture/cat.png")
+    cat = pygame.image.load("finalproject/picture/cat.png")
     cat = pygame.transform.scale(cat, (300*scale_width, 300*scale_height))
     cat_rect = cat.get_rect()
     cat_rect.x, cat_rect.y = width/2, height/2

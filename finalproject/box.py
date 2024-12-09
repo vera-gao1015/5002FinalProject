@@ -6,8 +6,8 @@ class Box:
         self.x = x
         self.y = y
         self.id = (x, y)
-        self.closed_image = pygame.image.load("picture/box_close.png")  
-        self.open_image = pygame.image.load("picture/box_open.png")      
+        self.closed_image = pygame.image.load("finalproject/picture/box_close.png")  
+        self.open_image = pygame.image.load("finalproject/picture/box_open.png")      
         self.closed_image = pygame.transform.scale(self.closed_image, (70, 70))
         self.open_image = pygame.transform.scale(self.open_image, (70, 70))
         self.current_image = self.closed_image                  

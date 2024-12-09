@@ -13,7 +13,7 @@ def clueroom(gameversion, player, x, y):
     pygame.display.set_caption("Clue Room")
     clock = pygame.time.Clock()
 
-    bgpic = pygame.image.load("picture/clueroom.png")
+    bgpic = pygame.image.load("finalproject/picture/clueroom.png")
     bgpic = pygame.transform.scale(bgpic, (width, height))
 
     font1 = pygame.font.SysFont("Arial", 30)

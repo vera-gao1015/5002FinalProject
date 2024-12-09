@@ -17,13 +17,13 @@ def game1(player, x, y):
     pygame.display.set_caption("New Game")
     clock = pygame.time.Clock()
 
-    bgpic = pygame.image.load("picture/map1.jpg")
+    bgpic = pygame.image.load("finalproject/picture/map1.jpg")
     original_width, original_height = bgpic.get_width(), bgpic.get_height()
     bgpic = pygame.transform.scale(bgpic, (width, height))
     scale_width = width / original_width
     scale_height = height / original_height
 
-    address = "picture/" + player + ".png" 
+    address = "finalproject/picture/" + player + ".png" 
     hero_image = pygame.transform.scale(pygame.image.load(address), (55, 55))
     hero = pygame.sprite.Sprite()
     hero.image = hero_image
@@ -33,10 +33,10 @@ def game1(player, x, y):
     player_group = pygame.sprite.Group()
     player_group.add(hero)
 
-    tornado = pygame.image.load("picture/tornado.png")
+    tornado = pygame.image.load("finalproject/picture/tornado.png")
     tornado = pygame.transform.scale(tornado, (150, 120))
 
-    dialogue_blank = pygame.image.load("picture/dialogue_blank.png")
+    dialogue_blank = pygame.image.load("finalproject/picture/dialogue_blank.png")
     dialogue_blank = pygame.transform.scale(dialogue_blank, (width-55, 220))
 
     font1 = pygame.font.SysFont("Arial", 30)

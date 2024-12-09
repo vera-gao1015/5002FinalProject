@@ -9,7 +9,7 @@ def begin():
     screen = pygame.display.get_surface()
     pygame.display.set_caption("Begin")
     clock = pygame.time.Clock()
-    begin = pygame.image.load("picture/begin.png")
+    begin = pygame.image.load("finalproject/picture/begin.png")
     begin = pygame.transform.scale(begin, (width, height))
     
 

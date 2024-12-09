@@ -10,14 +10,14 @@ def chooseplayer():
     screen = pygame.display.get_surface()
     clock = pygame.time.Clock()
     pygame.display.set_caption("Choose Your Player")
-    choose = pygame.image.load("picture/choose.png")
+    choose = pygame.image.load("finalproject/picture/choose.png")
     choose = pygame.transform.scale(choose, (width, height))
 
-    player1_image = pygame.image.load("picture/hero0.png")
-    player2_image = pygame.image.load("picture/hero1.png")
-    player3_image = pygame.image.load("picture/hero2.png")
-    player4_image = pygame.image.load("picture/hero3.png")
-    player5_image = pygame.image.load("picture/hero4.png")
+    player1_image = pygame.image.load("finalproject/picture/hero0.png")
+    player2_image = pygame.image.load("finalproject/picture/hero1.png")
+    player3_image = pygame.image.load("finalproject/picture/hero2.png")
+    player4_image = pygame.image.load("finalproject/picture/hero3.png")
+    player5_image = pygame.image.load("finalproject/picture/hero4.png")
 
     player_image = [player1_image, player2_image, player3_image, player4_image, player5_image]
     
